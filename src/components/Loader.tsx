@@ -32,7 +32,7 @@ export default function Loader({ onComplete }: Props) {
             <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#00FFB2] rounded-full animate-ping" />
           </div>
           <div className="text-center">
-            <p className="font-mono text-[10px] text-[#4A4A6A] tracking-[0.4em] uppercase">AI Engineer · Systems Architect</p>
+            <p className="font-mono text-[10px] text-[#4A4A6A] tracking-[0.4em] uppercase">Ethiopia Office · USA Remote · AI Engineer</p>
           </div>
         </div>
       </div>

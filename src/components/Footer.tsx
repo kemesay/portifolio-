@@ -6,7 +6,7 @@ export default function Footer() {
           <div className="w-7 h-7 rounded-lg border border-[#00FFB2]/25 flex items-center justify-center bg-[#00FFB2]/5">
             <span className="font-display text-xs font-bold text-[#00FFB2]">MK</span>
           </div>
-          <span className="font-mono text-xs text-[#4A4A6A]">Mesay Kebbede · AI Engineer</span>
+          <span className="font-mono text-xs text-[#4A4A6A]">Mesay Kebbede · AI Engineer · ET Office · US Remote</span>
         </div>
         <div className="font-mono text-xs text-[#4A4A6A]">
           © {new Date().getFullYear()} · React + TypeScript + GSAP + Tailwind

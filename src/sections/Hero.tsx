@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 
-const roles = ['AI Engineer', 'Multi-Agent Architect', 'LLM Developer', 'Data & ML Engineer', 'Fintech Innovator'];
+const roles = ['AI Engineer', 'Production ML Architect', 'Multi-Agent Systems Lead', 'Fintech AI Engineer', 'ET–US Platform Engineer'];
 
 export default function Hero() {
   const headlineRef = useRef<HTMLHeadingElement>(null);
-  const subRef      = useRef<HTMLParagraphElement>(null);
+  const subRef      = useRef<HTMLDivElement>(null);
   const ctaRef      = useRef<HTMLDivElement>(null);
   const photoWrap   = useRef<HTMLDivElement>(null);
   const statsRef    = useRef<HTMLDivElement>(null);
@@ -67,25 +67,25 @@ export default function Hero() {
           <div className="lg:col-span-7 order-2 lg:order-1 flex flex-col justify-center">
 
             {/* Status badge */}
-            <div className="inline-flex w-fit items-center gap-2.5 px-3.5 py-2 rounded-full border border-[#00FFB2]/22 bg-[#00FFB2]/5 mb-8">
-              <span className="relative flex h-2 w-2">
+            <div className="inline-flex w-fit items-center gap-2.5 px-4 py-2.5 rounded-full border border-[#00FFB2]/22 bg-[#00FFB2]/5 mb-8">
+              <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00FFB2] opacity-60"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00FFB2]"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#00FFB2]"></span>
               </span>
-              <span className="font-mono text-[11px] text-[#00FFB2] tracking-widest uppercase">Available for Work</span>
+              <span className="font-mono text-sm md:text-base text-[#00FFB2] tracking-widest uppercase font-medium">Available · Ethiopia Office · USA Remote</span>
             </div>
 
             {/* Greeting */}
-            <p className="font-mono text-[#8888AA] text-sm tracking-wider mb-3">
-              Hello — I'm <span className="text-[#00FFB2]">Mesay Kebbede</span>
+            <p className="prose-caption mb-4">
+              Mesay Kebbede — <span className="text-accent-et">Production AI Engineer</span>
             </p>
 
             {/* Big headline */}
-            <h1 ref={headlineRef} className="font-display font-extrabold leading-[0.86] tracking-tight mb-5">
+            <h1 ref={headlineRef} className="font-display font-extrabold leading-[0.88] tracking-tight mb-6">
               {[
-                { t: 'Architect of', cls: 'text-[#E8E8F2] text-5xl md:text-6xl lg:text-7xl' },
-                { t: 'Intelligent', cls: 'text-gradient text-5xl md:text-6xl lg:text-7xl' },
-                { t: 'AI Systems', cls: 'text-[#E8E8F2] text-5xl md:text-6xl lg:text-7xl' },
+                { t: 'Engineering', cls: 'text-[#E8E8F2] text-5xl sm:text-6xl md:text-7xl lg:text-8xl' },
+                { t: 'Intelligent', cls: 'text-gradient text-5xl sm:text-6xl md:text-7xl lg:text-8xl' },
+                { t: 'Systems at Scale', cls: 'text-[#E8E8F2] text-5xl sm:text-6xl md:text-7xl lg:text-8xl' },
               ].map((w, i) => (
                 <span key={i} className="block overflow-hidden py-0.5">
                   <span className={`word block ${w.cls}`} style={{ transform: 'translateY(115%)', opacity: 0 }}>{w.t}</span>
@@ -94,25 +94,40 @@ export default function Hero() {
             </h1>
 
             {/* Typewriter */}
-            <div className="flex items-center gap-3 mb-6 h-8">
-              <span className="w-6 h-px bg-[#00FFB2]/50 flex-shrink-0" />
-              <p className="font-mono text-[#00FFB2] text-sm md:text-base">
+            <div className="flex items-center gap-3 mb-8 min-h-[2rem]">
+              <span className="w-8 h-px bg-[#00FFB2]/50 flex-shrink-0" />
+              <p className="font-mono text-[#00FFB2] text-lg md:text-xl font-medium tracking-wide">
                 {display}<span className="caret" />
               </p>
             </div>
 
             {/* Bio */}
-            <p ref={subRef} className="font-body text-[#8888AA] text-lg leading-relaxed max-w-[520px] mb-10" style={{ opacity: 0 }}>
-              AI Engineer with <span className="text-[#E8E8F2] font-medium">5+ years</span> building production-grade 
-              intelligent systems across fintech, automation & enterprise platforms. 
-              From multi-agent pipelines to ML at scale — I architect intelligence, not just code.
-            </p>
+            <div ref={subRef} className="space-y-5 mb-10 max-w-[680px]" style={{ opacity: 0 }}>
+              <p className="prose-lead">
+                I build AI that ships — trusted by banks in Ethiopia and enterprises across the United States.
+              </p>
+              <p className="prose-body">
+                <span className="text-highlight">5+ years</span> delivering production multi-agent systems, RAG platforms, and enterprise ML —
+                from <span className="text-accent-et">on-site fintech innovation in Addis Ababa</span> to{' '}
+                <span className="text-accent-us">remote platform engineering for US clients</span>.
+              </p>
+              <div className="flex flex-wrap gap-3 pt-1">
+                <span className="value-chip text-accent-et border-[#00FFB2]/20">
+                  <span className="w-2 h-2 rounded-full bg-[#00FFB2]" />
+                  Ethiopia · Office-Based
+                </span>
+                <span className="value-chip text-accent-us border-[#00D4FF]/20">
+                  <span className="w-2 h-2 rounded-full bg-[#00D4FF]" />
+                  USA · Remote Delivery
+                </span>
+              </div>
+            </div>
 
             {/* CTAs */}
             <div ref={ctaRef} className="flex flex-wrap gap-4 mb-10" style={{ opacity: 0 }}>
               <button
                 onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-                className="group relative overflow-hidden flex items-center gap-3 px-7 py-3.5 bg-[#00FFB2] text-[#080810] font-display font-bold text-sm tracking-wide rounded-xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,255,178,0.35)]"
+                className="group relative overflow-hidden flex items-center gap-3 px-8 py-4 bg-[#00FFB2] text-[#080810] font-display font-bold text-base md:text-lg tracking-wide rounded-xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,255,178,0.35)]"
               >
                 <span className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-500 skew-x-12" />
                 View Projects
@@ -123,7 +138,7 @@ export default function Hero() {
 
               <a href="https://www.upwork.com/freelancers/~01eda1aeba270d233c?mp_source=share"
                 target="_blank" rel="noopener noreferrer"
-                className="group flex items-center gap-2.5 px-7 py-3.5 border border-white/10 text-[#E8E8F2] font-display font-medium text-sm tracking-wide rounded-xl hover:border-[#00FFB2]/35 hover:text-[#00FFB2] hover:bg-[#00FFB2]/5 transition-all duration-300"
+                className="group flex items-center gap-2.5 px-8 py-4 border border-white/10 text-[#E8E8F2] font-display font-semibold text-base md:text-lg tracking-wide rounded-xl hover:border-[#00FFB2]/35 hover:text-[#00FFB2] hover:bg-[#00FFB2]/5 transition-all duration-300"
               >
                 <svg className="w-4 h-4 text-[#6FDA44]" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06a2.705 2.705 0 0 1 2.703 2.703 2.707 2.707 0 0 1-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366C12.082 7.754 11.209 6.2 10.566 4.5H7.545V13.5c0 1.38-1.12 2.5-2.5 2.5s-2.5-1.12-2.5-2.5V4.5H0v9c0 3.033 2.467 5.5 5.5 5.5s5.5-2.467 5.5-5.5V17h3v-5.5c0 2.9 2.333 5.5 5.561 5.5C22.667 17 24 14.833 24 12c0-3.867-2.433-6.982-5.439-6.982z"/>
@@ -147,7 +162,7 @@ export default function Hero() {
               ].map(s => (
                 <a key={s.label} href={s.href} target={s.href.startsWith('http') ? '_blank' : undefined}
                   rel="noopener noreferrer"
-                  className="hero-social group flex items-center gap-2 text-[#4A4A6A] hover:text-[#00FFB2] transition-colors duration-300 font-mono text-xs"
+                  className="hero-social group flex items-center gap-2.5 text-[#4A4A6A] hover:text-[#00FFB2] transition-colors duration-300 font-mono text-sm md:text-base"
                   style={{ opacity: 0 }}
                 >
                   <span className="w-8 h-8 rounded-lg border border-white/8 group-hover:border-[#00FFB2]/30 flex items-center justify-center transition-colors">
@@ -178,35 +193,36 @@ export default function Hero() {
                 {/* Name card */}
                 <div className="absolute bottom-0 left-0 right-0 p-4">
                   <div className="rounded-xl px-3 py-2.5" style={{ background:'rgba(8,8,16,0.78)', backdropFilter:'blur(16px)', border:'1px solid rgba(255,255,255,0.07)' }}>
-                    <div className="font-display text-sm font-bold text-[#E8E8F2]">Mesay Kebbede</div>
-                    <div className="font-mono text-[11px] text-[#00FFB2] mt-0.5">AI Engineer · Addis Ababa, ET</div>
+                    <div className="font-display text-lg font-bold text-[#E8E8F2]">Mesay Kebbede</div>
+                    <div className="font-mono text-sm text-[#00FFB2] mt-1 font-medium">🇪🇹 Office · Addis Ababa, ET</div>
+                    <div className="font-mono text-sm text-[#00D4FF] mt-0.5 font-medium">🇺🇸 Remote · United States</div>
                   </div>
                 </div>
               </div>
 
               {/* Floating badge — experience */}
               <div className="absolute -left-16 top-10 rounded-xl px-3 py-2.5 border border-[#00FFB2]/20" style={{ background:'rgba(8,8,16,0.9)', backdropFilter:'blur(20px)' }}>
-                <p className="font-mono text-[10px] text-[#4A4A6A] mb-0.5">Experience</p>
-                <p className="font-display text-xl font-extrabold text-[#00FFB2]">5+ Yrs</p>
+                <p className="font-mono text-xs text-[#4A4A6A] mb-0.5 uppercase tracking-wider">Experience</p>
+                <p className="font-display text-2xl font-extrabold text-[#00FFB2]">5+ Yrs</p>
               </div>
 
               {/* Floating badge — projects */}
-              <div className="absolute -right-14 bottom-20 rounded-xl px-3 py-2.5 border border-[#00D4FF]/20" style={{ background:'rgba(8,8,16,0.9)', backdropFilter:'blur(20px)' }}>
-                <p className="font-mono text-[10px] text-[#4A4A6A] mb-0.5">Projects</p>
-                <p className="font-display text-xl font-extrabold text-[#00D4FF]">20+</p>
+              <div className="absolute -right-14 bottom-20 rounded-xl px-4 py-3 border border-[#00D4FF]/20" style={{ background:'rgba(8,8,16,0.9)', backdropFilter:'blur(20px)' }}>
+                <p className="font-mono text-xs text-[#4A4A6A] mb-0.5 uppercase tracking-wider">Delivered</p>
+                <p className="font-display text-2xl font-extrabold text-[#00D4FF]">20+</p>
               </div>
             </div>
 
             {/* Floating stats under photo */}
-            <div ref={statsRef} className="grid grid-cols-3 gap-2 w-full max-w-[320px]">
+            <div ref={statsRef} className="grid grid-cols-3 gap-3 w-full max-w-[360px]">
               {[
-                { v: '3', l: 'Active Roles' },
-                { v: 'ET · US', l: 'Locations' },
-                { v: 'C1/C2', l: 'English' },
+                { v: 'ET', l: 'On-Site · Office', c: '#00FFB2' },
+                { v: 'US', l: 'Remote · Projects', c: '#00D4FF' },
+                { v: 'C1/C2', l: 'English Fluent', c: '#E8E8F2' },
               ].map(s => (
-                <div key={s.v} className="rounded-xl py-2 px-3 text-center border border-white/6" style={{ background:'rgba(18,18,28,0.7)' }}>
-                  <div className="font-display font-bold text-[#00FFB2] text-sm">{s.v}</div>
-                  <div className="font-mono text-[10px] text-[#4A4A6A] mt-0.5">{s.l}</div>
+                <div key={s.v} className="rounded-xl py-3 px-3 text-center border border-white/6" style={{ background:'rgba(18,18,28,0.7)' }}>
+                  <div className="font-display font-extrabold text-lg" style={{ color: s.c }}>{s.v}</div>
+                  <div className="font-mono text-xs md:text-sm text-[#8888AA] mt-1 leading-tight">{s.l}</div>
                 </div>
               ))}
             </div>
@@ -216,7 +232,7 @@ export default function Hero() {
 
         {/* Bottom tech bar */}
         <div className="mt-8 pt-6 border-t border-white/5 flex flex-wrap gap-2 items-center">
-          <span className="font-mono text-[10px] text-[#4A4A6A] mr-2 tracking-widest uppercase">Stack</span>
+          <span className="font-mono text-xs text-[#4A4A6A] mr-2 tracking-widest uppercase">Core Stack</span>
           {['LangGraph','CrewAI','RAG','FastAPI','Python','Flutter','PostgreSQL','OpenAI API'].map(t=>(
             <span key={t} className="skill-pill">{t}</span>
           ))}

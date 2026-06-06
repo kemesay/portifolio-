@@ -4,10 +4,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
-  { v: '5+', l: 'Years Experience', sub: 'AI & Engineering' },
-  { v: '20+', l: 'Projects Delivered', sub: 'across industries' },
-  { v: '3', l: 'Active Engagements', sub: 'USA & Ethiopia' },
-  { v: '$1.5K+', l: 'Monthly Rate', sub: 'net / month' },
+  { v: '5+', l: 'Years Experience', sub: 'Production AI & Engineering' },
+  { v: '20+', l: 'Projects Delivered', sub: 'Fintech · Logistics · Enterprise' },
+  { v: '2', l: 'Operating Bases', sub: 'Ethiopia Office · USA Remote' },
+  { v: '$2.5K+', l: 'Monthly Rate', sub: 'Net · Remote & Contract' },
 ];
 
 const domains = [
@@ -55,30 +55,33 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
           {/* Left */}
           <div className="ab-left">
-            <h2 className="font-display text-4xl md:text-5xl font-extrabold text-[#E8E8F2] leading-tight mb-8">
-              Building AI that<br />
-              <span className="text-gradient">solves real problems</span>
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#E8E8F2] leading-[1.05] mb-8">
+              Bridging continents.<br />
+              <span className="text-gradient">Engineering AI that delivers.</span>
             </h2>
 
-            {[
-              "I'm Mesay Kebbede — an AI Engineer and Data & ML Specialist based in Addis Ababa, Ethiopia, with 5+ years designing intelligent systems that generate measurable impact in production environments.",
-              "My core strength is translating complex business requirements into scalable AI architectures — from multi-agent systems and RAG pipelines to production ML models and full-stack platforms.",
-              "Currently building AI-powered fintech solutions at Cooperative Bank of Oromia's DX-Valley Hub, and backend infrastructure for ODA Transportation LLC (USA), while taking on select consulting engagements via Upwork.",
-            ].map((t,i)=>(
-              <p key={i} className="font-body text-[#8888AA] leading-relaxed text-base mb-4">{t}</p>
-            ))}
+            <p className="prose-lead mb-5">
+              I'm Mesay Kebbede — a production AI Engineer trusted by financial institutions in Ethiopia and technology companies in the United States.
+            </p>
+            <p className="prose-body mb-5">
+              With <span className="text-highlight">5+ years</span> in applied AI, I architect systems that move real metrics: faster lending decisions, automated enterprise workflows, and platform infrastructure built to last.
+            </p>
+            <p className="prose-body mb-4">
+              <span className="text-accent-et">Ethiopia (Office)</span> — on-site at Cooperative Bank of Oromia's DX-Valley Hub, leading AI and software engineering for digital banking.{' '}
+              <span className="text-accent-us">United States (Remote)</span> — architecting backend systems and mobile platforms for ODA Transportation LLC. Select international consulting via Upwork.
+            </p>
 
             {/* Domain bars */}
             <div className="mt-10 space-y-4">
-              <p className="font-mono text-[10px] text-[#4A4A6A] tracking-widest uppercase mb-5">Domain Experience</p>
+              <p className="prose-caption mb-5">Domain Experience</p>
               {domains.map(d=>(
                 <div key={d.name}>
                   <div className="flex items-center justify-between mb-1.5">
                     <div className="flex items-center gap-2.5">
                       <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{background:d.color}} />
-                      <span className="font-body text-sm text-[#8888AA]">{d.name}</span>
+                      <span className="font-body text-base md:text-lg text-[#8888AA]">{d.name}</span>
                     </div>
-                    <span className="font-mono text-xs" style={{color:d.color}}>{d.years}</span>
+                    <span className="font-mono text-sm font-medium" style={{color:d.color}}>{d.years}</span>
                   </div>
                   <div className="h-0.5 bg-[#1a1a2e] rounded-full overflow-hidden">
                     <div className="domain-bar-fill h-full rounded-full" data-w={d.pct}
@@ -94,28 +97,29 @@ export default function About() {
             {/* Stats */}
             <div className="stats-grid grid grid-cols-2 gap-4 mb-10">
               {stats.map(s=>(
-                <div key={s.v} className="stat-card card-glass rounded-2xl p-5 group card-hover border border-white/5 hover:border-[#00FFB2]/15">
-                  <div className="font-display text-3xl font-extrabold text-[#00FFB2] mb-1">{s.v}</div>
-                  <div className="font-display text-sm font-semibold text-[#E8E8F2]">{s.l}</div>
-                  <div className="font-mono text-xs text-[#4A4A6A] mt-1">{s.sub}</div>
+                <div key={s.v} className="stat-card card-glass rounded-2xl p-6 group card-hover border border-white/5 hover:border-[#00FFB2]/15">
+                  <div className="font-display text-4xl font-extrabold text-[#00FFB2] mb-2">{s.v}</div>
+                  <div className="font-display text-lg font-semibold text-[#E8E8F2]">{s.l}</div>
+                  <div className="font-mono text-sm text-[#8888AA] mt-1.5">{s.sub}</div>
                 </div>
               ))}
             </div>
 
             {/* Current engagements */}
-            <p className="font-mono text-[10px] text-[#4A4A6A] tracking-widest uppercase mb-4">Currently At</p>
+            <p className="prose-caption mb-4">Current Engagements</p>
             <div className="space-y-3">
               {[
-                { co:'Cooperative Bank of Oromia', role:'AI & Software Engineer', loc:'Addis Ababa, ET', color:'#00FFB2' },
-                { co:'ODA Transportation LLC', role:'Backend & Platform Engineer', loc:'Remote, USA', color:'#00D4FF' },
-                { co:'Upwork / Freelance', role:'AI & Analytics Consultant', loc:'Global Remote', color:'#A78BFA' },
+                { co:'Cooperative Bank of Oromia', role:'AI & Software Engineer', loc:'Addis Ababa, Ethiopia', mode:'Office-Based · On-Site', color:'#00FFB2' },
+                { co:'ODA Transportation LLC', role:'Backend & Platform Engineer', loc:'United States', mode:'Remote · Project Delivery', color:'#00D4FF' },
+                { co:'Upwork / Freelance', role:'AI & Analytics Consultant', loc:'Global Clients', mode:'Remote · Contract', color:'#A78BFA' },
               ].map(r=>(
-                <div key={r.co} className="flex items-start gap-3 p-4 rounded-xl border border-white/5 hover:border-white/10 transition-all duration-300 group card-hover">
-                  <div className="w-2 h-2 rounded-full mt-1.5 flex-shrink-0 animate-pulse" style={{background:r.color}} />
+                <div key={r.co} className="flex items-start gap-3 p-5 rounded-xl border border-white/5 hover:border-white/10 transition-all duration-300 group card-hover">
+                  <div className="w-2.5 h-2.5 rounded-full mt-2 flex-shrink-0 animate-pulse" style={{background:r.color}} />
                   <div>
-                    <div className="font-display text-sm font-bold text-[#E8E8F2] group-hover:text-[#00FFB2] transition-colors">{r.co}</div>
-                    <div className="font-body text-xs text-[#8888AA] mt-0.5">{r.role}</div>
-                    <div className="font-mono text-xs text-[#4A4A6A]">{r.loc}</div>
+                    <div className="font-display text-lg font-bold text-[#E8E8F2] group-hover:text-[#00FFB2] transition-colors">{r.co}</div>
+                    <div className="font-body text-base text-[#8888AA] mt-1">{r.role}</div>
+                    <div className="font-mono text-sm text-[#8888AA] mt-0.5">{r.loc}</div>
+                    <div className="font-mono text-sm mt-1.5 tracking-wide uppercase font-medium" style={{color:r.color}}>{r.mode}</div>
                   </div>
                 </div>
               ))}
@@ -128,9 +132,9 @@ export default function About() {
                   <svg className="w-4 h-4 text-[#FFB800]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 14l9-5-9-5-9 5 9 5z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
                 </div>
                 <div>
-                  <div className="font-display text-sm font-bold text-[#E8E8F2]">B.Sc. Electrical & Computer Engineering</div>
-                  <div className="font-body text-xs text-[#8888AA]">Computer Engineering Focus · Jimma University</div>
-                  <div className="font-mono text-xs text-[#4A4A6A] mt-1">2016 — 2021</div>
+                  <div className="font-display text-base font-bold text-[#E8E8F2]">B.Sc. Electrical & Computer Engineering</div>
+                  <div className="font-body text-sm text-[#8888AA]">Computer Engineering Focus · Jimma University</div>
+                  <div className="font-mono text-sm text-[#8888AA] mt-1">2016 — 2021</div>
                 </div>
               </div>
             </div>

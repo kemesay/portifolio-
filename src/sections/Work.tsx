@@ -7,7 +7,7 @@ const jobs = [
   {
     co:'Cooperative Bank of Oromia', sub:'DX-Valley Innovation Hub',
     role:'Software Engineer / IT Officer', period:'06/2022 — Present',
-    loc:'Addis Ababa, Ethiopia', type:'Full-time', color:'#00FFB2',
+    loc:'Addis Ababa, Ethiopia · Office-Based', type:'On-Site', color:'#00FFB2',
     points:[
       'Architected multi-source AI credit scoring engines (Michu Kiyya, Michu Mizan, RBF) integrating bank statements, KYC data, Letters of Credit, and agricultural datasets',
       'Led development of the Michu digital lending chatbot serving thousands of customers with loan automation workflows',
@@ -21,7 +21,7 @@ const jobs = [
   {
     co:'ODA Transportation LLC', sub:'Remote — United States',
     role:'Backend & Platform Engineer', period:'2022 — Present',
-    loc:'Remote, United States', type:'Remote', color:'#00D4FF',
+    loc:'United States · Remote Delivery', type:'Remote Contract', color:'#00D4FF',
     points:[
       'Developing backend infrastructure and APIs powering ODA Transportation\'s logistics platform',
       'Built native iOS and Android apps with Flutter featuring real-time tracking and Square payment integration',

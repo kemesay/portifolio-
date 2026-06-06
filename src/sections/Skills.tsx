@@ -51,10 +51,10 @@ export default function Skills() {
         <div className="section-label"><span>02 — Skills</span><div/></div>
 
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-12">
-          <h2 className="font-display text-4xl md:text-5xl font-extrabold text-[#E8E8F2]">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#E8E8F2] leading-tight">
             Technical <span className="text-gradient">Expertise</span>
           </h2>
-          <p className="font-body text-[#4A4A6A] text-sm max-w-sm">5+ years of hands-on production experience across AI, ML, data engineering & full-stack platforms.</p>
+          <p className="prose-body max-w-md text-[#8888AA]">5+ years shipping production AI, ML, and full-stack systems — from enterprise fintech in Ethiopia to remote platform engineering for US clients.</p>
         </div>
 
         <div className="sk-grid grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
