@@ -39,7 +39,7 @@ export default function Hero() {
 
     // Text lines
     const tl = gsap.timeline({ delay });
-    const words = headlineRef.current?.querySelectorAll('.word');
+    const words = headlineRef.current?.querySelectorAll('.word') ?? [];
     tl.fromTo(words,
       { y: '115%', opacity: 0, skewY: 5 },
       { y: '0%', opacity: 1, skewY: 0, stagger: 0.07, duration: 1, ease: 'expo.out' }
