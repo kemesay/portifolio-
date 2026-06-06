@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import profilePhoto from '../assets/images/mesay.jpg';
 
 const roles = ['AI Engineer', 'Production ML Architect', 'Multi-Agent Systems Lead', 'Fintech AI Engineer', 'ET–US Platform Engineer'];
 
@@ -175,10 +176,10 @@ export default function Hero() {
           </div>
 
           {/* ── RIGHT COLUMN ── */}
-          <div className="lg:col-span-5 order-1 lg:order-2 flex flex-col items-center lg:items-end gap-6">
-            <div ref={photoWrap} className="relative" style={{ opacity: 0 }}>
+          <div className="lg:col-span-5 order-1 lg:order-2 flex flex-col items-center lg:items-end gap-6 w-full">
+            <div ref={photoWrap} className="relative w-full max-w-[340px] mx-auto lg:mx-0 lg:ml-auto" style={{ opacity: 0 }}>
               {/* Glow halo */}
-              <div className="absolute inset-[-10%] rounded-3xl bg-gradient-to-b from-[#00FFB2]/12 to-[#00D4FF]/6 blur-3xl pointer-events-none glow-pulse" />
+              <div className="absolute inset-[-8%] rounded-3xl bg-gradient-to-b from-[#00FFB2]/12 to-[#00D4FF]/6 blur-3xl pointer-events-none glow-pulse" />
 
               {/* Corner brackets */}
               {['-top-3 -left-3 border-t-2 border-l-2 rounded-tl-xl','-top-3 -right-3 border-t-2 border-r-2 rounded-tr-xl','-bottom-3 -left-3 border-b-2 border-l-2 rounded-bl-xl','-bottom-3 -right-3 border-b-2 border-r-2 rounded-br-xl'].map((c,i)=>(
@@ -186,10 +187,17 @@ export default function Hero() {
               ))}
 
               {/* Photo */}
-              <div className="relative w-[260px] h-[320px] md:w-[300px] md:h-[380px] lg:w-[320px] lg:h-[400px] rounded-2xl overflow-hidden border border-white/8">
-                <img src="/mesay.jpg" alt="Mesay Kebbede" className="w-full h-full object-cover object-top scale-[1.02]" style={{ filter: 'brightness(0.96) contrast(1.04)' }} />
+              <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden border border-white/8 bg-[#111118]">
+                <img
+                  src={profilePhoto}
+                  alt="Mesay Kebbede — AI Engineer"
+                  className="w-full h-full object-cover object-[center_12%]"
+                  style={{ filter: 'brightness(0.96) contrast(1.04)' }}
+                  loading="eager"
+                  decoding="async"
+                />
                 {/* Gradient overlay bottom */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#080810]/75 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#080810]/80 via-transparent to-transparent pointer-events-none" />
                 {/* Name card */}
                 <div className="absolute bottom-0 left-0 right-0 p-4">
                   <div className="rounded-xl px-3 py-2.5" style={{ background:'rgba(8,8,16,0.78)', backdropFilter:'blur(16px)', border:'1px solid rgba(255,255,255,0.07)' }}>
@@ -201,13 +209,13 @@ export default function Hero() {
               </div>
 
               {/* Floating badge — experience */}
-              <div className="absolute -left-16 top-10 rounded-xl px-3 py-2.5 border border-[#00FFB2]/20" style={{ background:'rgba(8,8,16,0.9)', backdropFilter:'blur(20px)' }}>
+              <div className="absolute left-2 sm:-left-12 lg:-left-14 top-8 sm:top-10 rounded-xl px-3 py-2.5 border border-[#00FFB2]/20 z-10" style={{ background:'rgba(8,8,16,0.9)', backdropFilter:'blur(20px)' }}>
                 <p className="font-mono text-xs text-[#4A4A6A] mb-0.5 uppercase tracking-wider">Experience</p>
                 <p className="font-display text-2xl font-extrabold text-[#00FFB2]">5+ Yrs</p>
               </div>
 
               {/* Floating badge — projects */}
-              <div className="absolute -right-14 bottom-20 rounded-xl px-4 py-3 border border-[#00D4FF]/20" style={{ background:'rgba(8,8,16,0.9)', backdropFilter:'blur(20px)' }}>
+              <div className="absolute right-2 sm:-right-10 lg:-right-12 bottom-24 sm:bottom-20 rounded-xl px-4 py-3 border border-[#00D4FF]/20 z-10" style={{ background:'rgba(8,8,16,0.9)', backdropFilter:'blur(20px)' }}>
                 <p className="font-mono text-xs text-[#4A4A6A] mb-0.5 uppercase tracking-wider">Delivered</p>
                 <p className="font-display text-2xl font-extrabold text-[#00D4FF]">20+</p>
               </div>
