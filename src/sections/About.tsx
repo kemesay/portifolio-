@@ -55,7 +55,7 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
           {/* Left */}
           <div className="ab-left">
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#E8E8F2] leading-[1.05] mb-8">
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-theme-primary leading-[1.05] mb-8">
               Bridging continents.<br />
               <span className="text-gradient">Engineering AI that delivers.</span>
             </h2>
@@ -79,7 +79,7 @@ export default function About() {
                   <div className="flex items-center justify-between mb-1.5">
                     <div className="flex items-center gap-2.5">
                       <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{background:d.color}} />
-                      <span className="font-body text-base md:text-lg text-[#8888AA]">{d.name}</span>
+                      <span className="font-body text-base md:text-lg text-theme-secondary">{d.name}</span>
                     </div>
                     <span className="font-mono text-sm font-medium" style={{color:d.color}}>{d.years}</span>
                   </div>
@@ -97,10 +97,10 @@ export default function About() {
             {/* Stats */}
             <div className="stats-grid grid grid-cols-2 gap-4 mb-10">
               {stats.map(s=>(
-                <div key={s.v} className="stat-card card-glass rounded-2xl p-6 group card-hover border border-white/5 hover:border-[#00FFB2]/15">
-                  <div className="font-display text-4xl font-extrabold text-[#00FFB2] mb-2">{s.v}</div>
-                  <div className="font-display text-lg font-semibold text-[#E8E8F2]">{s.l}</div>
-                  <div className="font-mono text-sm text-[#8888AA] mt-1.5">{s.sub}</div>
+                <div key={s.v} className="stat-card card-glass rounded-2xl p-6 group card-hover border border-theme hover:border-[color-mix(in_srgb,var(--accent)_25%,transparent)]">
+                  <div className="font-display text-4xl font-extrabold text-accent-et mb-2">{s.v}</div>
+                  <div className="font-display text-lg font-semibold text-theme-primary">{s.l}</div>
+                  <div className="font-mono text-sm text-theme-secondary mt-1.5">{s.sub}</div>
                 </div>
               ))}
             </div>
@@ -113,12 +113,12 @@ export default function About() {
                 { co:'ODA Transportation LLC', role:'Backend & Platform Engineer', loc:'United States', mode:'Remote · Project Delivery', color:'#00D4FF' },
                 { co:'Upwork / Freelance', role:'AI & Analytics Consultant', loc:'Global Clients', mode:'Remote · Contract', color:'#A78BFA' },
               ].map(r=>(
-                <div key={r.co} className="flex items-start gap-3 p-5 rounded-xl border border-white/5 hover:border-white/10 transition-all duration-300 group card-hover">
+                <div key={r.co} className="flex items-start gap-3 p-5 rounded-xl border border-theme hover:border-[color-mix(in_srgb,var(--accent)_20%,transparent)] transition-all duration-300 group card-hover">
                   <div className="w-2.5 h-2.5 rounded-full mt-2 flex-shrink-0 animate-pulse" style={{background:r.color}} />
                   <div>
-                    <div className="font-display text-lg font-bold text-[#E8E8F2] group-hover:text-[#00FFB2] transition-colors">{r.co}</div>
-                    <div className="font-body text-base text-[#8888AA] mt-1">{r.role}</div>
-                    <div className="font-mono text-sm text-[#8888AA] mt-0.5">{r.loc}</div>
+                    <div className="font-display text-lg font-bold text-theme-primary group-hover:text-accent-et transition-colors">{r.co}</div>
+                    <div className="font-body text-base text-theme-secondary mt-1">{r.role}</div>
+                    <div className="font-mono text-sm text-theme-muted mt-0.5">{r.loc}</div>
                     <div className="font-mono text-sm mt-1.5 tracking-wide uppercase font-medium" style={{color:r.color}}>{r.mode}</div>
                   </div>
                 </div>
@@ -132,9 +132,9 @@ export default function About() {
                   <svg className="w-4 h-4 text-[#FFB800]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 14l9-5-9-5-9 5 9 5z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
                 </div>
                 <div>
-                  <div className="font-display text-base font-bold text-[#E8E8F2]">B.Sc. Electrical & Computer Engineering</div>
-                  <div className="font-body text-sm text-[#8888AA]">Computer Engineering Focus · Jimma University</div>
-                  <div className="font-mono text-sm text-[#8888AA] mt-1">2016 — 2021</div>
+                  <div className="font-display text-base font-bold text-theme-primary">B.Sc. Electrical & Computer Engineering</div>
+                  <div className="font-body text-sm text-theme-secondary">Computer Engineering Focus · Jimma University</div>
+                  <div className="font-mono text-sm text-theme-muted mt-1">2016 — 2021</div>
                 </div>
               </div>
             </div>

@@ -28,7 +28,7 @@ export default function App() {
   };
 
   return (
-    <div className="noise-overlay min-h-screen bg-[#080810] text-[#E8E8F2]">
+    <div className="noise-overlay min-h-screen bg-app text-theme-primary">
       <Cursor />
       {!loaded && <Loader onComplete={onDone} />}
       {loaded && (

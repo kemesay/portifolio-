@@ -45,16 +45,16 @@ export default function Skills() {
   },[]);
 
   return (
-    <section ref={ref} id="skills" className="py-32 px-6 relative" style={{background:'#0c0c18'}}>
+    <section ref={ref} id="skills" className="py-32 px-6 relative bg-section">
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#00FFB2]/18 to-transparent"/>
       <div className="max-w-7xl mx-auto">
         <div className="section-label"><span>02 — Skills</span><div/></div>
 
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-12">
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#E8E8F2] leading-tight">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-theme-primary leading-tight">
             Technical <span className="text-gradient">Expertise</span>
           </h2>
-          <p className="prose-body max-w-md text-[#8888AA]">5+ years shipping production AI, ML, and full-stack systems — from enterprise fintech in Ethiopia to remote platform engineering for US clients.</p>
+          <p className="prose-body max-w-md">5+ years shipping production AI, ML, and full-stack systems — from enterprise fintech in Ethiopia to remote platform engineering for US clients.</p>
         </div>
 
         <div className="sk-grid grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
@@ -71,7 +71,7 @@ export default function Skills() {
                 {g.skills.map(s=>(
                   <div key={s.n}>
                     <div className="flex justify-between mb-1.5">
-                      <span className="font-body text-sm text-[#8888AA]">{s.n}</span>
+                      <span className="font-body text-sm text-theme-secondary">{s.n}</span>
                       <span className="font-mono text-xs" style={{color:g.color}}>{s.lvl}%</span>
                     </div>
                     <div className="h-0.5 bg-[#1a1a2e] rounded-full overflow-hidden">
@@ -95,20 +95,20 @@ export default function Skills() {
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full animate-pulse" style={{background:a.col}}/>
-                  <span className="font-display font-bold text-[#E8E8F2]">{a.tool}</span>
-                  <span className="font-mono text-[10px] text-[#4A4A6A]">Agentic Coding</span>
+                  <span className="font-display font-bold text-theme-primary">{a.tool}</span>
+                  <span className="font-mono text-xs text-theme-muted">Agentic Coding</span>
                 </div>
                 <span className="font-mono text-xs px-2.5 py-0.5 rounded-full border"
                   style={{color:a.col,borderColor:`${a.col}30`,background:`${a.col}08`}}>{a.dur}</span>
               </div>
-              <p className="font-body text-sm text-[#8888AA] leading-relaxed">{a.desc}</p>
+              <p className="font-body text-sm text-theme-secondary leading-relaxed">{a.desc}</p>
             </div>
           ))}
         </div>
 
         {/* Marquee */}
         <div>
-          <p className="font-mono text-[10px] text-[#4A4A6A] tracking-widest uppercase mb-5">Full Tech Stack</p>
+          <p className="prose-caption mb-5">Full Tech Stack</p>
           <div className="overflow-hidden relative">
             <div className="absolute left-0 inset-y-0 w-16 bg-gradient-to-r from-[#0c0c18] to-transparent z-10 pointer-events-none"/>
             <div className="absolute right-0 inset-y-0 w-16 bg-gradient-to-l from-[#0c0c18] to-transparent z-10 pointer-events-none"/>

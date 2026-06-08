@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import profilePhoto from '../assets/images/mesay.jpg';
+import { liveProjects } from '../data/liveProjects';
 
 const roles = ['AI Engineer', 'Production ML Architect', 'Multi-Agent Systems Lead', 'Fintech AI Engineer', 'ET–US Platform Engineer'];
 
@@ -55,7 +56,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden grid-bg">
+    <section id="hero" className="relative min-h-screen flex items-center overflow-x-hidden grid-bg">
       {/* Ambient blobs */}
       <div className="absolute top-1/4 -left-32 w-[600px] h-[600px] rounded-full bg-[#00FFB2]/4 blur-[160px] pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-[#00D4FF]/4 blur-[120px] pointer-events-none" />
@@ -68,12 +69,12 @@ export default function Hero() {
           <div className="lg:col-span-7 order-2 lg:order-1 flex flex-col justify-center">
 
             {/* Status badge */}
-            <div className="inline-flex w-fit items-center gap-2.5 px-4 py-2.5 rounded-full border border-[#00FFB2]/22 bg-[#00FFB2]/5 mb-8">
+            <div className="inline-flex w-fit items-center gap-2.5 px-4 py-2.5 rounded-full border badge-accent mb-8">
               <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00FFB2] opacity-60"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#00FFB2]"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-current opacity-60"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-current"></span>
               </span>
-              <span className="font-mono text-sm md:text-base text-[#00FFB2] tracking-widest uppercase font-medium">Available · Ethiopia Office · USA Remote</span>
+              <span className="font-mono text-sm md:text-base tracking-widest uppercase font-medium">Available · Ethiopia Office · USA Remote</span>
             </div>
 
             {/* Greeting */}
@@ -81,14 +82,15 @@ export default function Hero() {
               Mesay Kebbede — <span className="text-accent-et">Production AI Engineer</span>
             </p>
 
-            {/* Big headline */}
-            <h1 ref={headlineRef} className="font-display font-extrabold leading-[0.88] tracking-tight mb-6">
+            {/* Big headline — 4 lines, no horizontal clip */}
+            <h1 ref={headlineRef} className="mb-6 max-w-full">
               {[
-                { t: 'Engineering', cls: 'text-[#E8E8F2] text-5xl sm:text-6xl md:text-7xl lg:text-8xl' },
-                { t: 'Intelligent', cls: 'text-gradient text-5xl sm:text-6xl md:text-7xl lg:text-8xl' },
-                { t: 'Systems at Scale', cls: 'text-[#E8E8F2] text-5xl sm:text-6xl md:text-7xl lg:text-8xl' },
+                { t: 'Engineering', cls: 'hero-headline text-theme-primary' },
+                { t: 'Intelligent', cls: 'hero-headline text-gradient-hero' },
+                { t: 'Systems', cls: 'hero-headline text-theme-primary' },
+                { t: 'at Scale', cls: 'hero-headline hero-headline-sm' },
               ].map((w, i) => (
-                <span key={i} className="block overflow-hidden py-0.5">
+                <span key={i} className="hero-line">
                   <span className={`word block ${w.cls}`} style={{ transform: 'translateY(115%)', opacity: 0 }}>{w.t}</span>
                 </span>
               ))}
@@ -96,8 +98,8 @@ export default function Hero() {
 
             {/* Typewriter */}
             <div className="flex items-center gap-3 mb-8 min-h-[2rem]">
-              <span className="w-8 h-px bg-[#00FFB2]/50 flex-shrink-0" />
-              <p className="font-mono text-[#00FFB2] text-lg md:text-xl font-medium tracking-wide">
+              <span className="w-8 h-px flex-shrink-0 bg-current opacity-40 text-accent-et" />
+              <p className="font-mono text-accent-et text-lg md:text-xl font-medium tracking-wide">
                 {display}<span className="caret" />
               </p>
             </div>
@@ -124,24 +126,57 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* CTAs */}
-            <div ref={ctaRef} className="flex flex-wrap gap-4 mb-10" style={{ opacity: 0 }}>
-              <button
-                onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-                className="group relative overflow-hidden flex items-center gap-3 px-8 py-4 bg-[#00FFB2] text-[#080810] font-display font-bold text-base md:text-lg tracking-wide rounded-xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,255,178,0.35)]"
-              >
-                <span className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-500 skew-x-12" />
-                View Projects
-                <svg className="w-4 h-4 transition-transform group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </button>
+            {/* CTAs — Experience & Live Projects focus */}
+            <div ref={ctaRef} className="space-y-5 mb-10" style={{ opacity: 0 }}>
+              <div className="flex flex-wrap gap-3">
+                <button
+                  type="button"
+                  onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="btn-live btn-live-primary px-8 py-4 text-base md:text-lg"
+                >
+                  Explore Live Projects
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="btn-live btn-live-secondary px-8 py-4 text-base md:text-lg"
+                >
+                  View My Experience
+                </button>
+              </div>
 
-              <a href="https://www.upwork.com/freelancers/~01eda1aeba270d233c?mp_source=share"
-                target="_blank" rel="noopener noreferrer"
-                className="group flex items-center gap-2.5 px-8 py-4 border border-white/10 text-[#E8E8F2] font-display font-semibold text-base md:text-lg tracking-wide rounded-xl hover:border-[#00FFB2]/35 hover:text-[#00FFB2] hover:bg-[#00FFB2]/5 transition-all duration-300"
+              <div>
+                <p className="prose-caption mb-3">Jump to live work</p>
+                <div className="flex flex-wrap gap-2">
+                  {liveProjects.map(p => (
+                    <a
+                      key={p.id}
+                      href={p.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="live-chip"
+                      style={{ borderColor: `${p.color}40` }}
+                    >
+                      <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: p.color }} />
+                      {p.title}
+                      <svg className="w-3 h-3 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <a
+                href="https://www.upwork.com/freelancers/~01eda1aeba270d233c?mp_source=share"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 font-mono text-sm text-theme-muted hover:text-accent-et transition-colors"
               >
-                <svg className="w-4 h-4 text-[#6FDA44]" viewBox="0 0 24 24" fill="currentColor">
+                <svg className="w-4 h-4 text-[#6FDA44]" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
                   <path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06a2.705 2.705 0 0 1 2.703 2.703 2.707 2.707 0 0 1-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366C12.082 7.754 11.209 6.2 10.566 4.5H7.545V13.5c0 1.38-1.12 2.5-2.5 2.5s-2.5-1.12-2.5-2.5V4.5H0v9c0 3.033 2.467 5.5 5.5 5.5s5.5-2.467 5.5-5.5V17h3v-5.5c0 2.9 2.333 5.5 5.561 5.5C22.667 17 24 14.833 24 12c0-3.867-2.433-6.982-5.439-6.982z"/>
                 </svg>
                 Hire on Upwork
@@ -163,7 +198,7 @@ export default function Hero() {
               ].map(s => (
                 <a key={s.label} href={s.href} target={s.href.startsWith('http') ? '_blank' : undefined}
                   rel="noopener noreferrer"
-                  className="hero-social group flex items-center gap-2.5 text-[#4A4A6A] hover:text-[#00FFB2] transition-colors duration-300 font-mono text-sm md:text-base"
+                  className="hero-social group flex items-center gap-2.5 text-theme-muted hover:text-accent-et transition-colors duration-300 font-mono text-sm md:text-base"
                   style={{ opacity: 0 }}
                 >
                   <span className="w-8 h-8 rounded-lg border border-white/8 group-hover:border-[#00FFB2]/30 flex items-center justify-center transition-colors">
@@ -239,8 +274,8 @@ export default function Hero() {
         </div>
 
         {/* Bottom tech bar */}
-        <div className="mt-8 pt-6 border-t border-white/5 flex flex-wrap gap-2 items-center">
-          <span className="font-mono text-xs text-[#4A4A6A] mr-2 tracking-widest uppercase">Core Stack</span>
+        <div className="mt-8 pt-6 border-t border-theme flex flex-wrap gap-2 items-center">
+          <span className="font-mono text-xs tracking-[0.35em] uppercase text-theme-muted mr-2">Core Stack</span>
           {['LangGraph','CrewAI','RAG','FastAPI','Python','Flutter','PostgreSQL','OpenAI API'].map(t=>(
             <span key={t} className="skill-pill">{t}</span>
           ))}
@@ -249,8 +284,8 @@ export default function Hero() {
 
       {/* Scroll hint */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-25">
-        <span className="font-mono text-[10px] text-[#8888AA] tracking-[0.35em] uppercase">Scroll</span>
-        <div className="w-px h-10 bg-gradient-to-b from-[#8888AA] to-transparent" />
+        <span className="font-mono text-xs text-theme-muted tracking-[0.35em] uppercase">Scroll</span>
+        <div className="w-px h-10 bg-gradient-to-b from-[color-mix(in_srgb,var(--text-muted)_80%,transparent)] to-transparent" />
       </div>
     </section>
   );

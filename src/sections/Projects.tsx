@@ -3,7 +3,22 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
-const projects = [
+interface Project {
+  id: string;
+  featured?: boolean;
+  title: string;
+  sub: string;
+  desc: string;
+  highlights: string[];
+  tags: string[];
+  color: string;
+  cat: string;
+  status: string;
+  link?: string;
+  linkLabel?: string;
+}
+
+const projects: Project[] = [
   {
     id:'01', featured:true,
     title:'AI Credit Scoring Platform',
@@ -17,7 +32,7 @@ const projects = [
     ],
     tags:['Python','TensorFlow','FastAPI','PostgreSQL','LLMs','Feature Engineering','MLOps'],
     color:'#00FFB2', cat:'Fintech · AI', status:'Production',
-    link:'https://t.me/michudigitallending', linkLabel:'View Bot →',
+    link:'https://t.me/michudigitallending', linkLabel:'Open Live Bot',
   },
   {
     id:'02',
@@ -32,7 +47,7 @@ const projects = [
     ],
     tags:['Flutter','iOS','Android','Node.js','Square Payments','Docker','PostgreSQL'],
     color:'#00D4FF', cat:'Transportation · Mobile', status:'Production',
-    link:'https://odatransportation.com/', linkLabel:'Visit Website →',
+    link:'https://odatransportation.com/', linkLabel:'Visit Live Site',
   },
   {
     id:'03',
@@ -72,9 +87,63 @@ const projects = [
     ],
     tags:['Flutter','Spring Boot','React','PostgreSQL','Microservices'],
     color:'#FF6B6B', cat:'Fintech · Full-Stack', status:'Production',
-    link:'https://souqpass.coopbankoromiasc.com/', linkLabel:'Visit Platform →',
+    link:'https://souqpass.coopbankoromiasc.com/', linkLabel:'Launch Platform',
   },
 ];
+
+function ProjectCard({ p, className = '' }: { p: Project; className?: string }) {
+  const inner = (
+    <>
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="font-mono text-sm text-theme-muted">{p.id}</span>
+          <span className="font-mono text-xs px-2.5 py-1 rounded-full font-medium" style={{background:`${p.color}15`,color:p.color}}>{p.cat}</span>
+        </div>
+        <span className="flex items-center gap-1.5 font-mono text-xs status-live">
+          <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"/>{p.status}
+        </span>
+      </div>
+      <h3 className="font-display text-xl md:text-2xl font-extrabold text-theme-primary mb-1 group-hover:text-accent-et transition-colors">{p.title}</h3>
+      <p className="font-mono text-sm text-theme-muted mb-3">{p.sub}</p>
+      <p className="font-body text-theme-secondary text-base leading-relaxed mb-5 flex-1">{p.desc}</p>
+      <div className="flex flex-wrap gap-2 mb-5">
+        {p.tags.slice(0, p.featured ? p.tags.length : 5).map(t=><span key={t} className="skill-pill">{t}</span>)}
+      </div>
+      {p.link ? (
+        <span className="btn-launch w-full sm:w-auto justify-center" style={{ color: p.color, background: `${p.color}12` }}>
+          {p.linkLabel ?? 'Open Live Project'}
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </span>
+      ) : (
+        <span className="font-mono text-sm text-theme-muted">Research / internal deployment</span>
+      )}
+    </>
+  );
+
+  const cardClass = `pj-card card-glass rounded-2xl p-6 lg:p-8 group card-hover border border-theme flex flex-col ${className}`;
+
+  if (p.link) {
+    return (
+      <a
+        href={p.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`clickable-card ${cardClass}`}
+        style={{ borderColor: `color-mix(in srgb, ${p.color} 20%, var(--border-subtle))` }}
+      >
+        {inner}
+      </a>
+    );
+  }
+
+  return (
+    <div className={cardClass} style={{ borderColor: `color-mix(in srgb, ${p.color} 12%, var(--border-subtle))` }}>
+      {inner}
+    </div>
+  );
+}
 
 export default function Projects() {
   const ref = useRef<HTMLElement>(null);
@@ -91,86 +160,57 @@ export default function Projects() {
   const rest      = projects.filter(p=>!p.featured);
 
   return (
-    <section ref={ref} id="projects" className="py-32 px-6 relative" style={{background:'#0c0c18'}}>
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#00FFB2]/18 to-transparent"/>
+    <section ref={ref} id="projects" className="py-32 px-6 relative bg-section">
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[color-mix(in_srgb,var(--accent)_25%,transparent)] to-transparent"/>
       <div className="max-w-7xl mx-auto">
-        <div className="section-label"><span>04 — Projects</span><div/></div>
-        <h2 className="font-display text-4xl md:text-5xl font-extrabold text-[#E8E8F2] mb-14">
-          Key <span className="text-gradient">Accomplishments</span>
-        </h2>
+        <div className="section-label"><span>04 — Live Projects</span><div/></div>
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-14">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-theme-primary">
+            Production work you<br /><span className="text-gradient">can click & explore</span>
+          </h2>
+          <p className="prose-body max-w-md text-theme-secondary">
+            Every card with a launch button opens a live product — tap to verify the work in production.
+          </p>
+        </div>
 
         <div className="pj-grid space-y-6">
-          {/* Featured */}
-          <div className="pj-card card-glass rounded-2xl p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-5 gap-8 group card-hover border border-white/5 hover:border-[#00FFB2]/12"
-            style={{borderColor:`${featured.color}10`}}>
+          {/* Featured — full width clickable */}
+          <div className="lg:grid lg:grid-cols-5 lg:gap-8">
             <div className="lg:col-span-3">
-              <div className="flex flex-wrap items-center gap-2 mb-4">
-                <span className="font-mono text-xs text-[#4A4A6A]">{featured.id}</span>
-                <span className="font-mono text-xs px-2 py-0.5 rounded-full" style={{background:`${featured.color}12`,color:featured.color}}>{featured.cat}</span>
-                <span className="flex items-center gap-1.5 font-mono text-xs text-emerald-400">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"/>{featured.status}
-                </span>
-                <span className="font-mono text-xs px-2 py-0.5 rounded-full bg-[#00FFB2]/10 text-[#00FFB2] border border-[#00FFB2]/20">⭐ Featured</span>
-              </div>
-              <h3 className="font-display text-2xl font-extrabold text-[#E8E8F2] mb-1 group-hover:text-[#00FFB2] transition-colors">{featured.title}</h3>
-              <p className="font-mono text-sm text-[#4A4A6A] mb-4">{featured.sub}</p>
-              <p className="font-body text-[#8888AA] text-sm leading-relaxed mb-6">{featured.desc}</p>
-              <div className="flex flex-wrap gap-2">
-                {featured.tags.map(t=><span key={t} className="skill-pill">{t}</span>)}
-              </div>
+              <ProjectCard p={featured} className="h-full hover:border-[color-mix(in_srgb,var(--accent)_35%,var(--border-subtle))]" />
             </div>
-            <div className="lg:col-span-2 flex flex-col justify-between">
-              <ul className="space-y-2.5 mb-6">
-                {featured.highlights.map((h,i)=>(
-                  <li key={i} className="flex gap-3 p-3 rounded-xl bg-[#080810]/60 border border-white/4">
-                    <span className="mt-1.5 w-1 h-1 rounded-full flex-shrink-0" style={{background:featured.color}}/>
-                    <span className="font-body text-xs text-[#8888AA] leading-relaxed">{h}</span>
-                  </li>
-                ))}
-              </ul>
-              {featured.link && (
-                <a href={featured.link} target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 font-mono text-xs hover:opacity-80 transition-opacity font-semibold"
-                  style={{color:featured.color}}>
-                  {featured.linkLabel}
+            <div className="hidden lg:flex lg:col-span-2 flex-col gap-3 mt-0">
+              <p className="prose-caption">Quick launch</p>
+              {projects.filter(p => p.link).map(p => (
+                <a
+                  key={p.id}
+                  href={p.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="live-chip justify-between py-3 px-4 text-base"
+                  style={{ borderColor: `${p.color}35` }}
+                >
+                  <span>
+                    <span className="font-display font-bold text-theme-primary block">{p.title}</span>
+                    <span className="font-mono text-xs text-theme-muted">{p.sub}</span>
+                  </span>
+                  <svg className="w-4 h-4 flex-shrink-0" style={{ color: p.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
                 </a>
-              )}
+              ))}
             </div>
           </div>
 
           {/* Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {rest.map(p=>(
-              <div key={p.id} className="pj-card card-glass rounded-2xl p-6 group card-hover border border-white/4 hover:border-white/8 flex flex-col"
-                style={{borderColor:`${p.color}08`}}>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-2">
-                    <span className="font-mono text-xs text-[#4A4A6A]">{p.id}</span>
-                    <span className="font-mono text-xs px-2 py-0.5 rounded-full" style={{background:`${p.color}12`,color:p.color}}>{p.cat}</span>
-                  </div>
-                  <span className="flex items-center gap-1 font-mono text-[11px] text-emerald-400">
-                    <span className="w-1 h-1 rounded-full bg-emerald-400"/>{p.status}
-                  </span>
-                </div>
-                <h3 className="font-display text-lg font-extrabold text-[#E8E8F2] mb-1 group-hover:text-[#00FFB2] transition-colors">{p.title}</h3>
-                <p className="font-mono text-xs text-[#4A4A6A] mb-3">{p.sub}</p>
-                <p className="font-body text-[#8888AA] text-sm leading-relaxed mb-4 flex-1">{p.desc}</p>
-                <div className="flex flex-wrap gap-1.5 mb-4">
-                  {p.tags.slice(0,5).map(t=><span key={t} className="skill-pill">{t}</span>)}
-                </div>
-                {p.link && (
-                  <a href={p.link} target="_blank" rel="noopener noreferrer"
-                    className="font-mono text-xs font-semibold hover:opacity-80 transition-opacity"
-                    style={{color:p.color}}>
-                    {p.linkLabel}
-                  </a>
-                )}
-              </div>
+            {rest.map(p => (
+              <ProjectCard key={p.id} p={p} />
             ))}
           </div>
         </div>
       </div>
-      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#00FFB2]/18 to-transparent"/>
+      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[color-mix(in_srgb,var(--accent)_25%,transparent)] to-transparent"/>
     </section>
   );
 }

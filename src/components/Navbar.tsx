@@ -1,7 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import ThemeToggle from './ThemeToggle';
 
-const links = ['About', 'Skills', 'Work', 'Projects', 'Contact'];
+const links = [
+  { id: 'about', label: 'About', highlight: false },
+  { id: 'skills', label: 'Skills', highlight: false },
+  { id: 'work', label: 'Experience', highlight: true },
+  { id: 'projects', label: 'Live Projects', highlight: true },
+  { id: 'contact', label: 'Contact', highlight: false },
+];
 
 export default function Navbar() {
   const navRef = useRef<HTMLElement>(null);
@@ -16,10 +23,10 @@ export default function Navbar() {
     );
     const onScroll = () => {
       setScrolled(window.scrollY > 40);
-      const sections = links.map(l => document.getElementById(l.toLowerCase()));
+      const sections = links.map(l => document.getElementById(l.id));
       for (let i = sections.length - 1; i >= 0; i--) {
         const s = sections[i];
-        if (s && window.scrollY >= s.offsetTop - 160) { setActive(links[i]); break; }
+        if (s && window.scrollY >= s.offsetTop - 160) { setActive(links[i].label); break; }
       }
     };
     window.addEventListener('scroll', onScroll);
@@ -27,70 +34,81 @@ export default function Navbar() {
   }, []);
 
   const go = (id: string) => {
-    document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     setMenuOpen(false);
   };
 
   return (
-    <nav ref={navRef} className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'py-3 bg-[#080810]/92 backdrop-blur-2xl border-b border-white/5' : 'py-6'}`}>
+    <nav
+      ref={navRef}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'py-3 backdrop-blur-2xl border-b border-theme' : 'py-6'}`}
+      style={scrolled ? { background: 'var(--nav-bg)' } : undefined}
+    >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg border border-[#00FFB2]/30 flex items-center justify-center bg-[#00FFB2]/5">
-            <span className="font-display text-sm font-bold text-[#00FFB2]">MK</span>
+          <div className="w-8 h-8 rounded-lg border flex items-center justify-center" style={{ borderColor: 'color-mix(in srgb, var(--accent) 35%, transparent)', background: 'color-mix(in srgb, var(--accent) 6%, transparent)' }}>
+            <span className="font-display text-sm font-bold text-accent-et">MK</span>
           </div>
-          <span className="font-mono text-xs text-[#4A4A6A] hidden sm:block">Mesay Kebbede</span>
+          <span className="font-mono text-xs text-theme-muted hidden sm:block">Mesay Kebbede</span>
         </div>
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-1">
           {links.map(l => (
-            <button key={l} onClick={() => go(l)}
+            <button
+              key={l.id}
+              onClick={() => go(l.id)}
               className={`relative px-4 py-2 font-display text-sm font-medium tracking-wide transition-colors duration-300 rounded-lg
-                ${active === l ? 'text-[#00FFB2]' : 'text-[#8888AA] hover:text-[#E8E8F2]'}`}
+                ${l.highlight ? 'nav-highlight font-bold' : ''}
+                ${active === l.label && !l.highlight ? 'text-accent-et' : !l.highlight ? 'text-theme-secondary hover:text-theme-primary' : ''}`}
             >
-              {active === l && (
-                <span className="absolute inset-0 rounded-lg bg-[#00FFB2]/8 border border-[#00FFB2]/15" />
+              {active === l.label && !l.highlight && (
+                <span className="absolute inset-0 rounded-lg border" style={{ background: 'color-mix(in srgb, var(--accent) 8%, transparent)', borderColor: 'color-mix(in srgb, var(--accent) 18%, transparent)' }} />
               )}
-              {l}
+              {l.label}
             </button>
           ))}
         </div>
 
-        {/* CTA */}
+        {/* CTA + theme */}
         <div className="hidden md:flex items-center gap-3">
-          <a href="https://www.upwork.com/freelancers/~01eda1aeba270d233c?mp_source=share"
-            target="_blank" rel="noopener noreferrer"
-            className="font-mono text-xs text-[#8888AA] hover:text-[#00FFB2] transition-colors hline">
-            Upwork
-          </a>
-          <a href="mailto:mesaykebbede@gmail.com"
-            className="flex items-center gap-2 px-4 py-2 bg-[#00FFB2] text-[#080810] font-display font-bold text-xs tracking-wider rounded-lg hover:bg-[#00FFB2]/90 transition-all duration-200">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#080810] animate-pulse" />
-            Hire Me
-          </a>
+          <ThemeToggle />
+          <button
+            onClick={() => go('projects')}
+            className="btn-live btn-live-primary text-xs px-4 py-2"
+          >
+            Live Projects
+          </button>
         </div>
 
         {/* Mobile toggle */}
-        <button className="md:hidden p-2 flex flex-col gap-1.5" onClick={() => setMenuOpen(!menuOpen)}>
-          <span className={`block w-5 h-px bg-[#E8E8F2] transition-all ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-          <span className={`block w-5 h-px bg-[#E8E8F2] transition-all ${menuOpen ? 'opacity-0' : ''}`} />
-          <span className={`block w-5 h-px bg-[#E8E8F2] transition-all ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-        </button>
+        <div className="md:hidden flex items-center gap-2">
+          <ThemeToggle />
+          <button className="p-2 flex flex-col gap-1.5" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
+            <span className={`block w-5 h-px bg-theme-primary transition-all ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+            <span className={`block w-5 h-px bg-theme-primary transition-all ${menuOpen ? 'opacity-0' : ''}`} />
+            <span className={`block w-5 h-px bg-theme-primary transition-all ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-[#0e0e1a]/98 backdrop-blur-2xl border-b border-white/5 px-6 py-6 flex flex-col gap-2">
+        <div className="md:hidden backdrop-blur-2xl border-b border-theme px-6 py-6 flex flex-col gap-2" style={{ background: 'var(--nav-bg)' }}>
           {links.map(l => (
-            <button key={l} onClick={() => go(l)}
-              className={`text-left px-4 py-3 rounded-lg font-display text-base font-medium transition-colors ${active===l ? 'text-[#00FFB2] bg-[#00FFB2]/8' : 'text-[#8888AA]'}`}>
-              {l}
+            <button
+              key={l.id}
+              onClick={() => go(l.id)}
+              className={`text-left px-4 py-3 rounded-lg font-display text-base font-medium transition-colors
+                ${l.highlight ? 'nav-highlight font-bold' : active === l.label ? 'text-accent-et bg-[color-mix(in_srgb,var(--accent)_8%,transparent)]' : 'text-theme-secondary'}`}
+            >
+              {l.label}
             </button>
           ))}
-          <a href="mailto:mesaykebbede@gmail.com" className="mt-3 flex items-center justify-center gap-2 py-3 bg-[#00FFB2] text-[#080810] font-bold rounded-lg font-display text-sm">
-            Hire Me
-          </a>
+          <button onClick={() => go('projects')} className="mt-3 btn-live btn-live-primary w-full py-3">
+            View Live Projects
+          </button>
         </div>
       )}
     </nav>
